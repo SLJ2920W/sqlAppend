@@ -21,7 +21,7 @@ el.addEventListener("click", function() {
 		lnSqlLenArr.push(lnSql.length);
 		lnSqlArr.push(lnSql);
 
-	});
+	}); 
 
 	// 각 sql 라인에 최대 길이 정렬하여 얻음
 	var max = lnSqlLenArr.sort(function(a, b) {
