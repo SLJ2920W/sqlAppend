@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+  <textarea id="sqlFormat" style="margin: 0px; width: 750px; height: 328px;">
+		SELECT B.EMAIL,
+		       B.EMAIL_NAME,
+		  (SELECT gw.decrypt(password)
+		   FROM vw_org_user
+		   WHERE user_id=
+		       (SELECT user_id
+			FROM tb_ucode
+			WHERE attr6 = REGEXP_SUBSTR(B.EMAIL, '[^@]+', 1)) ) AS PASSWORD
+		FROM TB_MAIL_COMMON_MAIL_USER A,
+		     TB_MAIL_COMMON_MAIL B
+		WHERE A.USER_ID = :userId
+		  AND A.COMMON_MAIL_ID = B.COMMON_MAIL_ID;
+  
+  </textarea>
+
+<br>
+<button id="go">
+go
+</button>
+<br>
+<textarea id="result" style="margin: 0px; width: 750px; height: 328px;"></textarea>
+</body>
+</html>
